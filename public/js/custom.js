@@ -1,16 +1,3 @@
-$('#switch_theme').change(function () {
-
-    var cookieName = 'SKIN';
-    var cookieLifespan = 365;
-
-    var standardSkin = $(this).is(':checked ') ? 'dark' : 'light';
-
-    cookie.set(cookieName, standardSkin, cookieLifespan);
-
-    window.location.reload();
-});
-
-
 $('.modal').on('show.bs.modal hidden.bs.modal', function (e) {
 
     var $html = $('html');

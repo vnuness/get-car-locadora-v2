@@ -80,18 +80,7 @@
             <div class="tab-pane" id="messages-2">
 
                 <div class="row m-t-20">
-                    <div class="col-8">
-                        <h5 class="m-0 font-15">Tema Escuro</h5>
 
-                        <p class="text-muted m-b-0">
-                            <small>Padrão</small>
-                        </p>
-                    </div>
-                    <div class="col-4 text-right">
-                        <input type="checkbox" id="switch_theme" data-plugin="switchery" data-color="#3bafda"
-                               {{ isset($_COOKIE['SKIN']) && $_COOKIE['SKIN'] == 'light' ? '' : 'checked' }}
-                               data-size="small"/>
-                    </div>
                 </div>
 
             </div>

@@ -153,12 +153,17 @@
                     _modal.find('[name="name"]').val(result.data.name);
                     _modal.find('[name="email"]').val(result.data.email);
 
-                    $(result.data.roles).each(function (k, v) {
-                        _modal.find('[name="roles[]"] option[value="' + v.id + '"]').prop('selected', true).change();
+                    let roles = [];
+
+                    $(result.data.roles).each((k, v) => {
+                        roles.push(v.id);
                     });
 
+                    _modal.find('[name="roles[]"]').val(roles).change();
+
                     _modal.modal('show');
-                },
+
+                    },
                 error: function (result) {
                     $.Notification.notify('error', 'top center', 'Error', 'Ocorreu um erro inesperado!')
                 }

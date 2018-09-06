@@ -19,11 +19,7 @@
 
     @stack("plugin-css")
 
-    @if (isset($_COOKIE['SKIN']) && $_COOKIE['SKIN'] == 'light')
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    @else
-        <link href="{{ asset('css/style_dark.css') }}" rel="stylesheet">
-    @endif
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
