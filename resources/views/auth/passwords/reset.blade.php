@@ -4,7 +4,7 @@
     <div class="wrapper-page">
 
         <div class="text-center">
-            <a href="index.html" class="logo-lg"><i class="mdi mdi-radar"></i> <span>MeetaWeb - Reset Password</span>
+            <a href="index.html" class="logo-lg"><i class="mdi mdi-radar"></i> <span>Meeta - Reset Password</span>
             </a>
         </div>
 

@@ -4,7 +4,7 @@
     <div class="wrapper-page">
 
         <div class="text-center">
-            <a href="index.html" class="logo-lg"><i class="mdi mdi-radar"></i> <span>MeetaWeb - Register</span> </a>
+            <a href="index.html" class="logo-lg"><i class="mdi mdi-radar"></i> <span>Meeta - Register</span> </a>
         </div>
 
         <form class="form-horizontal m-t-20" method="POST" action="{{ route('register') }}">

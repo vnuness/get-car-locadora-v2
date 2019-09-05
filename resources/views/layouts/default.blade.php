@@ -100,7 +100,7 @@
         <!-- end content -->
 
         <footer class="footer">
-            {{ date('Y') }} © MeetaWeb Solutions
+            {{ date('Y') }} © Meeta Solutions
         </footer>
 
     </div>
