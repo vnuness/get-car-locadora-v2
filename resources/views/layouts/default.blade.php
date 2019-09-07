@@ -100,7 +100,7 @@
         <!-- end content -->
 
         <footer class="footer">
-            {{ date('Y') }} © Meeta Solutions
+            {{ date('Y') }} © Get Car Locadora
         </footer>
 
     </div>

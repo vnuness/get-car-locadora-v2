@@ -23,11 +23,11 @@
 @endpush
 
 @section('page-title')
-    <i class="fa fa-dash"></i> Dashboard
+    <i class="fa fa-dash"></i> Home
 @endsection
 
 @section('content')
     <div class="row">
-        <h1>Conteúdo</h1>
+        <h1></h1>
     </div>
 @endsection

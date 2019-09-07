@@ -221,17 +221,17 @@
 
             <div class="card-box">
                 @can('credentials.users.create')
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="m-b-30">
-                            <button type="button" class="btn btn-sm btn-success waves-effect waves-light"
-                                    data-toggle="modal"
-                                    data-target="#user-modal">
-                                Cadastrar <i class="mdi mdi-plus-circle-outline"></i>
-                            </button>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="m-b-30">
+                                <button type="button" class="btn btn-sm btn-success waves-effect waves-light"
+                                        data-toggle="modal"
+                                        data-target="#user-modal">
+                                    Cadastrar <i class="mdi mdi-plus-circle-outline"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endcan
 
                 <div class="row">

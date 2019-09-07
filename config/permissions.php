@@ -5,10 +5,16 @@ return [
         "Menu Principal" => [
             "menu" => ['type' => 'title'],
             "itens" => [
-                "Dashboard" => [
+                "Home" => [
                     "menu" => ['type' => 'link', "route" => "home", "icon-class" => "ti-home"],
                     "permissions" => [
                         'dashboard.view' => 'Visualizar página',
+                    ]
+                ],
+                "Veiculos" => [
+                    "menu" => ['type' => 'link', "route" => "veiculos.index", "icon-class" => "ti-car"],
+                    "permissions" => [
+                        'veiculos.view' => 'Visualizar página',
                     ]
                 ],
                 "Credenciais" => [
