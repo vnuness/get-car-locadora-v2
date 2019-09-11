@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Veiculos;
 
+use App\Models\Cambio;
+use App\Models\Combustivel;
+use App\Models\Status;
+use App\Models\Veiculos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use vendor\project\StatusTest;
 
 class VeiculosController extends Controller
 {
@@ -23,8 +28,13 @@ class VeiculosController extends Controller
                 'name' => 'SUV'
             ]
         ];
+
+        $cambio = Cambio::get();
+        $combustivel = Combustivel::get();
+        $status = Status::get();
+
         $categorias = collect($categorias);
-        return view('produtos.index', compact('categorias'));
+        return view('veiculos.index', compact('categorias', 'cambio', 'combustivel', 'status'));
     }
 
     /**
@@ -45,7 +55,16 @@ class VeiculosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $fileName = uniqid(date('HisYmd'));
+            $request->file->store('veiculos', $fileName);
+            Veiculos::create([
+
+            ]);
+        } catch (\Exception $e) {
+            dd($e);
+        }
+
     }
 
     /**
