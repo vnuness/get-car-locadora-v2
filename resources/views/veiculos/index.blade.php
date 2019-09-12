@@ -11,8 +11,16 @@
 <script>
 
     $('.visualizar').click(function() {
-        let modal = $('#visualizar');
-        modal.modal('show');
+        $.ajax({
+            url: '{{route('veiculos.get-image')}}',
+            type: 'GET',
+            success(result) {
+                $('#modal-imagem').empty();
+                $('#modal-imagem').append(result);
+                let modal = $('#visualizar');
+                modal.modal('show');
+            }
+        });
     });
 
     let $datatable_cars = $('#datatable-users');
@@ -71,11 +79,27 @@
 
 @section('content')
     <div class="row">
+        <div class="col-md-12">
+            @if(\Session::has('error'))
+                <div class="alert alert-danger">
+                    {!! \Session::get('error') !!}
+                </div>
+            @endif
+        </div>
 
         <div class="col-sm-12">
 
             <div class="card-box">
                 @can('credentials.users.create')
+{{--                        @if (\Session::has('success'))--}}
+{{--                            <div class="alert alert-success">--}}
+{{--                                    {!! \Session::get('success') !!}--}}
+{{--                            </div>--}}
+{{--                        @elseif(\Session::has('error'))--}}
+{{--                            <div class="alert alert-danger">--}}
+{{--                                {!! \Session::get('error') !!}--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="m-b-30">
@@ -101,16 +125,22 @@
                             <th>Opções</th>
                         </tr>
                         </thead>
-{{--                        <tbody>--}}
-{{--                            <tr>--}}
-{{--                                <td>1</td>--}}
-{{--                                <td>Volkswagem Jetta</td>--}}
-{{--                                <td>ASF-6523</td>--}}
-{{--                                <td>R$44,56</td>--}}
-{{--                                <td>Sedan</td>--}}
-{{--                                <td><i class="ti-eye text-warning visualizar" data-toogle="modal" data-target="#visualizar" title="Visualizar" style="cursor: pointer;"></i> <i class="ti-pencil text-primary editar" title="Editar" style="cursor: pointer;"></i> <i class="ti-trash text-danger excluir" title="Excluir" style="cursor: pointer;"></i> </td>--}}
-{{--                            </tr>--}}
-{{--                        </tbody>--}}
+                        <tbody>
+                            <tr>
+                                <td>Volkswagem Jetta</td>
+                                <td>ASF-6523</td>
+                                <td>R$44,56</td>
+                                <td>Sedan</td>
+                                <td><i class="ti-eye text-warning visualizar" data-toogle="modal" data-target="#visualizar" title="Visualizar" style="cursor: pointer;"></i> <i class="ti-pencil text-primary editar" title="Editar" style="cursor: pointer;"></i> <i class="ti-trash text-danger excluir" title="Excluir" style="cursor: pointer;"></i> </td>
+                            </tr>
+                            <tr>
+                                <td>Fiat Uno</td>
+                                <td>EZA-5280</td>
+                                <td>R$23,56</td>
+                                <td>Sedan</td>
+                                <td><i class="ti-eye text-warning visualizar" data-toogle="modal" data-target="#visualizar" title="Visualizar" style="cursor: pointer;"></i> <i class="ti-pencil text-primary editar" title="Editar" style="cursor: pointer;"></i> <i class="ti-trash text-danger excluir" title="Excluir" style="cursor: pointer;"></i> </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -127,10 +157,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <center>
-                        <img src="images/cars/jetta.jpg" alt="200" width="300" height="200">
-                    </center>
+                <div class="modal-body" id="modal-imagem">
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>

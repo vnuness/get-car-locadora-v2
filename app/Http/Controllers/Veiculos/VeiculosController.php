@@ -8,6 +8,7 @@ use App\Models\Status;
 use App\Models\Veiculos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use vendor\project\StatusTest;
 
 class VeiculosController extends Controller
@@ -55,16 +56,35 @@ class VeiculosController extends Controller
      */
     public function store(Request $request)
     {
+
         try {
             $fileName = uniqid(date('HisYmd'));
-            $request->file->store('veiculos', $fileName);
+//            $request->imagem->storeAs('imagem', $fileName.'.png');
+            Storage::disk('public')->put('images/cars/' . $fileName. '.',$request->imagem->extension(), base64_decode($request->imagem));
             Veiculos::create([
-
+                'modelo' => $request->modelo,
+                'montadora' => $request->montadora,
+                'ano' => $request->ano,
+                'placa' => $request->placa,
+                'renavam' => '12341142',
+                'id_combustivel' => 1,
+                'id_cambio' => 1,
+                'id_status' => 1,
+                'acessorios' => 'teste',
+                'id_status_atividade' => 1,
+                'imagem' => $fileName,
+                'valor_diaria' => $request->diaria
             ]);
+            return back()->with('success', 'Veículo cadastrado com sucesso!');
         } catch (\Exception $e) {
-            dd($e);
+            return back()->with('error', 'Ocorreu um erro ao cadastrar o veículo!');
         }
 
+    }
+
+    public function getImage()
+    {
+        return view('img');
     }
 
     /**

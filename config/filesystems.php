@@ -42,6 +42,7 @@ return [
     */
 
     'disks' => [
+        'default' => env('FILESYSTEM_DRIVER', 'public'),
 
         'local' => [
             'driver' => 'local',
