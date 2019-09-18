@@ -8,12 +8,6 @@
             </a>
         </li>
 
-        <li class="list-inline-item notification-list">
-            <a class="nav-link right-bar-toggle waves-light waves-effect" href="#">
-                <i class="mdi mdi-dots-horizontal noti-icon"></i>
-            </a>
-        </li>
-
         <li class="list-inline-item dropdown notification-list">
 
             <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg"
