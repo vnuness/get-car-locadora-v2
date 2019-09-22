@@ -40,27 +40,25 @@
                                 <li data-target="#carouselExampleFade" data-slide-to="2"></li>
                             </ol>
                             <div class="carousel-inner" role="listbox">
-                                <div class="carousel-item active">
-                                    <img class="d-block img-fluid" src="{{asset('storage/images/cars/1.png')}}" />
-{{--                                    <div class="carousel-caption d-none d-md-block">--}}
-{{--                                        <h3 class="text-white">First slide label</h3>--}}
-{{--                                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>--}}
+                                @php $i = 0;@endphp
+                                @foreach($imagens as $imagem)
+                                    @if($i == 0)
+                                        <div class="carousel-item active">
+                                            <img class="d-block img-fluid" src="{{asset('storage/images/cars/' . $imagem->imagem)}}" />
+                                        </div>
+                                    @else
+                                        <div class="carousel-item">
+                                            <img class="d-block img-fluid" src="{{asset('storage/images/cars/' . $imagem->imagem)}}" />
+                                        </div>
+                                    @endif
+                                    @php $i++;@endphp
+{{--                                    <div class="carousel-item">--}}
+{{--                                        <img class="d-block img-fluid" src="{{asset('storage/images/cars/2.png')}}" />--}}
 {{--                                    </div>--}}
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block img-fluid" src="{{asset('storage/images/cars/2.png')}}" />
-{{--                                    <div class="carousel-caption d-none d-md-block">--}}
-{{--                                        <h3 class="text-white">Second slide label</h3>--}}
-{{--                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                                    <div class="carousel-item">--}}
+{{--                                        <img class="d-block img-fluid" src="{{asset('storage/images/cars/3.png')}}" />--}}
 {{--                                    </div>--}}
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block img-fluid" src="{{asset('storage/images/cars/3.png')}}" />
-{{--                                    <div class="carousel-caption d-none d-md-block">--}}
-{{--                                        <h3 class="text-white">Third slide label</h3>--}}
-{{--                                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>--}}
-{{--                                    </div>--}}
-                                </div>
+                                @endforeach
                             </div>
                             <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -77,8 +75,8 @@
         </div>
         <div class="col-md-5">
             <div class="card-box">
-                <h2>{{$_GET['name']}} - {{$_GET['description']}}</h2><br>
-                <h3>Diária: R${{$_GET['daily']}}</h3><br>
+                <h2>{{$veiculo->modelo}} - {{$veiculo->descricao}}</h2><br>
+                <h3>Diária: R${{$veiculo->valor_diaria}}</h3><br>
 
                 <div class="row">
                     <div class="col-md-6">

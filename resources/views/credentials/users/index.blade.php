@@ -298,7 +298,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h4 class="modal-title"><i class="fa fa-user-plus"></i> Editar Usuário</h4>
                 </div>
-                {!! Form::open(['route'=>'credentials.users.index','id'=>'form-edit']) !!}
+                {!! Form::open(['route'=>'veiculos.index','id'=>'form-edit', 'method' => 'PUT']) !!}
                 <div class="modal-body">
 
                     <div class="form-group">

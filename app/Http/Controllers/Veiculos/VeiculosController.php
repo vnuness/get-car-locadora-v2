@@ -11,6 +11,7 @@ use App\Models\Status;
 use App\Models\Veiculos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use vendor\project\StatusTest;
 
@@ -28,9 +29,16 @@ class VeiculosController extends Controller
         return view('veiculos.index', compact('categorias', 'cambio', 'combustivel', 'status'));
     }
 
-    public function detalheVeiculo()
+    public function detalheVeiculo($id)
     {
-        return view('veiculos.detalhes');
+        $imagens = $this->getImagens($id);
+        $veiculo = Veiculos::find($id);
+        return view('veiculos.detalhes', compact('imagens', 'veiculo'));
+    }
+
+    public function getImagens($id)
+    {
+        return DB::select('call proc_get_imagens(?)', [$id]);
     }
 
     public function all()
@@ -132,7 +140,7 @@ class VeiculosController extends Controller
      */
     public function edit($id)
     {
-        //
+        return Veiculos::find($id)->toArray();
     }
 
     /**
@@ -144,7 +152,20 @@ class VeiculosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        try {
+            DB::beginTransaction();
+
+            $veiculos = Veiculos::find($id);
+            $veiculos->fill($request->all());
+            $veiculos->save();
+
+            DB::commit();
+        } catch (\Exception $e) {
+
+        }
+
+        return response()->json(['message' => 'Veículo atualizado.']);
     }
 
     /**
