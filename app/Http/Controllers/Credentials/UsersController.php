@@ -50,7 +50,7 @@ class UsersController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $pass = str_random(8);
+        $pass = '123mudar';
 
         $crypt = bcrypt($pass);
 
