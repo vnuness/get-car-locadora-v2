@@ -67,9 +67,6 @@ class VeiculosController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
-
-//        try {
 
         $idImagens = [];
             for ($i = 1; $i <= 5; $i++) {
@@ -103,10 +100,11 @@ class VeiculosController extends Controller
                 'valor_diaria' => $request->diaria
             ]);
 
-            foreach($idImagens as $idImagem) {
+            foreach($idImagens as $index => $idImagem) {
                 ImagemVeiculo::create([
                    'id_veiculo' => $veiculo->id,
-                   'id_imagem' => $idImagem
+                   'id_imagem' => $idImagem,
+                    'order' => $index + 1
                 ]);
             }
 
@@ -156,17 +154,30 @@ class VeiculosController extends Controller
     public function update(Request $request, $id)
     {
 
-        try {
+//        try {
             DB::beginTransaction();
+
+            for($i = 1; $i <= 5; $i++) {
+                $name = 'imagem' . $i;
+                if(isset($request->$name)) {
+                    $imageName = Storage::disk('public')->put('images/cars', $request->$name);
+                    $idImagem = DB::select('call proc_get_imagem(?,?)', [$id, $i]);
+                    $imagem = Imagens::find($idImagem[0]->id_imagem);
+                    $imagem->fill([
+                       'imagem' => explode('/', $imageName)[2]
+                    ]);
+                    $imagem->save();
+                }
+            }
 
             $veiculos = Veiculos::find($id);
             $veiculos->fill($request->all());
             $veiculos->save();
 
             DB::commit();
-        } catch (\Exception $e) {
-
-        }
+//        } catch (\Exception $e) {
+//
+//        }
 
         return back()->with('success', 'Veículo atualizado com sucesso!');
     }

@@ -282,27 +282,23 @@
                         </div>
                         <span>Insira até 5 imagens: </span><br><br>
                         <div class="form-group">
-                            {{--                        <input type="file" class="form-control" id="example-fileinput">--}}
-                            {{--                        {!! Form::file('file', null, ['class' =>'form-control', 'required']) !!}--}}
-                            <input type="file" name="imagem1" id="upload" value="Escolha um arquivo" accept="image/*"
-                                   style="display: none;">
-                        </div>
-                        <div class="form-group">
-                            <input type="file" name="imagem2" id="upload" value="Escolha um arquivo" accept="image/*"
-                                   style="display: none;">
-                        </div>
-                        <div class="form-group">
-                            <input type="file" name="imagem3" id="upload" value="Escolha um arquivo" accept="image/*"
-                                   style="display: none;">
-                        </div>
-                        <div class="form-group">
-                            <input type="file" name="imagem4" id="upload" value="Escolha um arquivo" accept="image/*"
-                                   style="display: none;">
-                        </div>
-                        <div class="form-group">
-                            <input type="file" name="imagem5" id="upload" value="Escolha um arquivo" accept="image/*"
-                                   style="display: none;">
-                        </div>
+                            <div class="form-group">
+                                {{--                        <input type="file" class="form-control" id="example-fileinput">--}}
+                                {{--                        {!! Form::file('file', null, ['class' =>'form-control', 'required']) !!}--}}
+                                {!! Form::file('imagem1') !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::file('imagem2') !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::file('imagem3') !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::file('imagem4') !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::file('imagem5') !!}
+                            </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Fechar</button>
