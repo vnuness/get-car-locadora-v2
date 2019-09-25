@@ -67,6 +67,7 @@ class VeiculosController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->all());
 
 //        try {
 
@@ -74,10 +75,12 @@ class VeiculosController extends Controller
             for ($i = 1; $i <= 5; $i++) {
                 $fileName = uniqid(date('HisYmd'));
                 $name = 'imagem' . $i;
+                $fileName = $fileName. '.' . $request->$name->extension();
                 if (isset($request->$name)) {
-                    Storage::disk('public')->put('images/cars/' . $fileName . '.' . $request->$name->extension(), base64_decode($request->$name));
+                    $imageName = Storage::disk('public')->put('images/cars', $request->$name);
+
                     $imagens = Imagens::create([
-                        'imagem' => $fileName . '.' . $request->$name->extension()
+                        'imagem' => explode('/', $imageName)[2]
                     ]);
 
                     array_push($idImagens, $imagens->id);
@@ -165,7 +168,7 @@ class VeiculosController extends Controller
 
         }
 
-        return response()->json(['message' => 'Veículo atualizado.']);
+        return back()->with('success', 'Veículo atualizado com sucesso!');
     }
 
     /**

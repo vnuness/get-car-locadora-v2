@@ -57,6 +57,8 @@ class ProfileController extends Controller
     {
         $this->validate($request, ['avatar' => 'required']);
 
+        dd($request->input('avatar'));
+
         $file_data = $request->input('avatar');
 
         $storage = public_path();
