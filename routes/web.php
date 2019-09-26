@@ -1,5 +1,7 @@
 <?php
 
+Route::get('detalhes-veiculo/{id}',  'Veiculos\VeiculosController@detalheVeiculo')->name('veiculo.detalhe');
+
 Route::get('', function () {
     return redirect()->route('home');
 });
@@ -14,6 +16,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('profile', 'ProfileController@update')->name('profile.update');
     Route::get('get-image', 'Veiculos\VeiculosController@getImage')->name('veiculos.get-image');
     Route::get('veiculos-all', 'Veiculos\VeiculosController@all')->name('veiculos.all');
-    Route::get('detalhes-veiculo/{id}',  'Veiculos\VeiculosController@detalheVeiculo')->name('veiculo.detalhe');
     Route::resource('veiculos', 'Veiculos\VeiculosController');
 });
