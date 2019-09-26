@@ -11,6 +11,7 @@
 
         $(document).ready(function () {
             $('#sidebar-menu').hide();
+            $('.button-menu-mobile').hide();
             $('.rounded-circle').hide();
             $('.nav-link').hide();
             $('.button-menu-mobile').click();
