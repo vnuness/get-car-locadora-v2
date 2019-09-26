@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 @include('plugins.datatables.default')
+@include('plugins.switchery')
 @include('plugins.moment')
 @include('plugins.amcharts')
 @include('plugins.ammap')
@@ -9,6 +10,7 @@
 @include('plugins.notifyjs')
 
 @push("page-js")
+
     <script>
 
         {{--$('.visualizar').click(function () {--}}
@@ -68,6 +70,8 @@
             });
         });
 
+
+
         $(document).ready(function () {
 
             let table = $('#datatable-cars').DataTable({
@@ -89,11 +93,19 @@
                     {data: 'descricao'},
                     {
                         data: 'id', "ordering": false, "render": function (data, type, row) {
-                            return [
-                            `<a href="detalhes-veiculo/${data}"><i class="ti-eye text-warning visualizar" data-toogle="modal" data-target="#visualizar" title="Visualizar" style="cursor: pointer;"></i></a> ` +
-                                '<a href="{{route('veiculos.index')}}/' + data + '/edit" class="mr-2 edit" data-toggle="tooltip" title="Editar"><i class="fa fa-pencil text-primary"></i></a>' +
-                                        '<a href="{{route('veiculos.index')}}/' + data + '" class="mr-2 delete-link" data-toggle="tooltip" title="Remover"><i class="fa fa-trash-o text-danger"></i></a>'
-                            ].join(' ')
+                            if(row.id_status_atividade === 1) {
+                                return [
+                                    `<a href="detalhes-veiculo/${data}"><i class="ti-eye text-warning visualizar" data-toogle="modal" data-target="#visualizar" title="Visualizar" style="cursor: pointer;"></i></a> ` +
+                                    '<a href="{{route('veiculos.index')}}/' + data + '/edit" class="mr-2 edit" data-toggle="tooltip" title="Editar"><i class="fa fa-pencil text-primary"></i></a>' +
+                                    `<input type="checkbox" checked id="status" data-id="${data}" data-color="#00b19d"/> <span id="status_atividade">Habilitado</span>`
+                                ].join(' ')
+                            } else {
+                                return [
+                                    `<a href="detalhes-veiculo/${data}"><i class="ti-eye text-warning visualizar" data-toogle="modal" data-target="#visualizar" title="Visualizar" style="cursor: pointer;"></i></a> ` +
+                                    '<a href="{{route('veiculos.index')}}/' + data + '/edit" class="mr-2 edit" data-toggle="tooltip" title="Editar"><i class="fa fa-pencil text-primary"></i></a>' +
+                                    `<input type="checkbox" id="status" data-color="#00b19d" data-id="${data}"/> <span id="status_text">Habilitado</span>`
+                                ].join(' ')
+                            }
                         }
                     }
                 ],
@@ -101,12 +113,14 @@
                     $('[data-toggle="tooltip"]').tooltip();
                 }
             });
+
         });
 
     </script>
 @endpush
 
 @push('page-css')
+
     <style>
 
     </style>
@@ -280,24 +294,24 @@
                         <div class="form-group">
                             {!! Form::text('diaria',null,['class'=>'form-control','required', 'placeholder'=>'Valor Diária']) !!}
                         </div>
-                        <span>Insira até 5 imagens: </span><br><br>
+                        <span>Atualize as imagens na ordem: </span><br><br>
                         <div class="form-group">
                             <div class="form-group">
                                 {{--                        <input type="file" class="form-control" id="example-fileinput">--}}
                                 {{--                        {!! Form::file('file', null, ['class' =>'form-control', 'required']) !!}--}}
-                                {!! Form::file('imagem1') !!}
+                                1. {!! Form::file('imagem1') !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::file('imagem2') !!}
+                                2. {!! Form::file('imagem2') !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::file('imagem3') !!}
+                                3. {!! Form::file('imagem3') !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::file('imagem4') !!}
+                                4. {!! Form::file('imagem4') !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::file('imagem5') !!}
+                                5. {!! Form::file('imagem5') !!}
                             </div>
                     </div>
                     <div class="modal-footer">
