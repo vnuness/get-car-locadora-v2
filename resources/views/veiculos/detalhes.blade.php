@@ -10,6 +10,9 @@
     <script>
 
         $(document).ready(function () {
+            $('#sidebar-menu').hide();
+            $('.rounded-circle').hide();
+            $('.nav-link').hide();
             $('.button-menu-mobile').click();
         });
 
