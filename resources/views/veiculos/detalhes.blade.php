@@ -10,7 +10,7 @@
     <script>
 
         $(document).ready(function () {
-
+            $('.button-menu-mobile').click();
         });
 
     </script>

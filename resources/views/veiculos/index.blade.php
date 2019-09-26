@@ -114,6 +114,12 @@
                 }
             });
 
+            $("#status").change(function() {
+               if($(this).prop('checked')) {
+                   alert('opa');
+               }
+            });
+
         });
 
     </script>
