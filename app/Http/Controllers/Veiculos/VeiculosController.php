@@ -96,6 +96,7 @@ class VeiculosController extends Controller
                 'id_status' => 1,
                 'id_categoria' => $request->categoria,
                 'acessorios' => 'teste',
+                'descricao' => $request->descricao,
                 'id_status_atividade' => 1,
                 'valor_diaria' => $request->diaria
             ]);

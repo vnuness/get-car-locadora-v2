@@ -50,8 +50,8 @@
                     _modal.find('[name="ano"]').val(result.ano);
                     _modal.find('[name="placa"]').val(result.placa);
                     _modal.find('[name="categoria"]').val(result.id_categoria);
-                    _modal.find('[name="categoria"]').val(result.id_categoria);
                     _modal.find('[name="diaria"]').val(result.valor_diaria);
+                    _modal.find('[name="descricao"]').val(result.descricao);
 
                     // let roles = [];
                     //
@@ -235,6 +235,9 @@
                     <div class="form-group">
                         {!! Form::text('diaria',null,['class'=>'form-control','required', 'placeholder'=>'Valor Diária']) !!}
                     </div>
+                    <div class="form-group">
+                        {!! Form::text('descricao',null,['class'=>'form-control','required', 'placeholder'=>'Descrição']) !!}
+                    </div>
                     <span>Insira até 5 imagens: </span><br><br>
                     <div class="form-group">
                         {{--                        <input type="file" class="form-control" id="example-fileinput">--}}
@@ -293,6 +296,9 @@
                         </div>
                         <div class="form-group">
                             {!! Form::text('diaria',null,['class'=>'form-control','required', 'placeholder'=>'Valor Diária']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::text('descricao',null,['class'=>'form-control','required', 'placeholder'=>'Descrição']) !!}
                         </div>
                         <span>Atualize as imagens na ordem: </span><br><br>
                         <div class="form-group">
