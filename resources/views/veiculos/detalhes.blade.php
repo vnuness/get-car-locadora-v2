@@ -83,11 +83,11 @@
                 <h3>Diária: R${{$veiculo->valor_diaria}}</h3><br>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
                         <button class="btn btn-success" style="width: 100%;">Alugar</button>
                     </div>
-                    <div class="col-md-6">
-                        <button class="btn btn-secondary">Adicionar ao carrinho</button>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <button class="btn btn-secondary" style="width: 100%;">Adicionar ao carrinho</button>
                     </div>
                 </div>
 
