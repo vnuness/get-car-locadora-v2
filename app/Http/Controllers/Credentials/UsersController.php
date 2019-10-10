@@ -98,12 +98,24 @@ class UsersController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
+
         try {
 
             DB::beginTransaction();
 
             $user = User::find($id);
-            $user->fill($request->all());
+            if($request->password == null) {
+                $user->fill($request->except(['password']));
+            } else {
+                $pass = $request->password;
+                $crypt = bcrypt($pass);
+                $arr = [
+                    'name' => $request->name,
+                    'password' => bcrypt($request->password)
+                ];
+
+                $user->fill($arr);
+            }
             $user->save();
 
             $user->roles()->sync($request->get('roles'));

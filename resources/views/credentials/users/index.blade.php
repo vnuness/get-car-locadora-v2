@@ -105,6 +105,7 @@
                     name: _form.find('[name="name"]').val(),
                     email: _form.find('[name="email"]').val(),
                     roles: _form.find('[name="roles[]"]').val(),
+                    password: _form.find('[name="password"]').val(),
                     _token: _form.find('[name="_token"]').val()
                 },
                 success: function (data) {
@@ -149,6 +150,8 @@
                 success: function (result) {
 
                     var _modal = $('#edit-user-modal');
+
+                    _modal.find('[name=email]').prop("disabled", true);
 
                     _modal.find('[name="name"]').val(result.data.name);
                     _modal.find('[name="email"]').val(result.data.email);
@@ -306,6 +309,10 @@
                     </div>
                     <div class="form-group">
                         {!! Form::email('email',null,['class'=>'form-control','required', 'placeholder'=>'Email ']) !!}
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Senha">
+                        {{--{!! Form::password('password',null,['class'=>'form-control','', 'placeholder'=>'Senha ']) !!}--}}
                     </div>
                     <div class="form-group">
                         {!! Form::select('roles[]', $roles->pluck('title','id'), null, ['data-tags'=>"true",'class'=>'form-control select2', 'multiple', 'required', 'data-placeholder'=>'Perfil']) !!}
