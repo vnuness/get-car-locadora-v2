@@ -14,6 +14,7 @@
     <script>
 
         let table = $('#datatable-pedidos').DataTable({
+            order: [[ 0, "desc" ]],
             lengthChange: false,
             language: {
                 "url": "/plugins/datatables/i18n/Portuguese-Brasil.json"
@@ -21,7 +22,7 @@
             ajax: '{{route('pedidos.all')}}',
             columns: [
                 {data: 'data_inicio', "render": helper.datatables.datetime_format},
-                {data: 'id'},
+                {data: 'numero_locacao'},
                 {data: 'valor'},
                 {data: 'status_pedido', render: function(data, type, row) {
                         return data.status;

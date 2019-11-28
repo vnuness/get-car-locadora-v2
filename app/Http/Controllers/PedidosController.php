@@ -22,7 +22,7 @@ class PedidosController extends Controller
 
     public function all()
     {
-        $locacoes = Locacoes::with('statusPedido')->get();
+        $locacoes = Locacoes::with('statusPedido')->orderByRaw('data_inicio DESC')->get();
 
         return response()->json(['data' => $locacoes]);
     }
