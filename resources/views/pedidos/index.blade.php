@@ -13,13 +13,61 @@
 
     <script>
 
+        let table = $('#datatable-pedidos').DataTable({
+            lengthChange: false,
+            language: {
+                "url": "/plugins/datatables/i18n/Portuguese-Brasil.json"
+            },
+            ajax: '{{route('pedidos.all')}}',
+            columns: [
+                {data: 'data_inicio', "render": helper.datatables.datetime_format},
+                {data: 'id'},
+                {data: 'valor'},
+                {data: 'status_pedido', render: function(data, type, row) {
+                        return data.status;
+                    }
+                },
+                {
+                    data: 'status_pedido', "ordering": false, "render": function (data, type, row) {
+                        return [
+                            `<a href="pedidos/status"><i class="ti-plus text-warning view" data-toogle="modal" data-idlocacao="${row.id}"  data-id="${data.id}" data-target="#visualizar" title="Visualizar" style="cursor: pointer;"></i></a> `
+                            {{--'<a href="{{route('pedidos.index')}}/' + data + '/edit" class="mr-2 edit" data-toggle="tooltip" title="Editar"><i class="fa fa-pencil text-primary"></i></a>'--}}
+                        ].join(' ')
+                    }
+                }
+            ],
+            initComplete: function (settings, json) {
+                $('[data-toggle="tooltip"]').tooltip();
+            }
+        });
+
+        $(document).ready(function () {
+
+            $.ajax({
+                url: "{{route('pedidos.all')}}",
+                type: 'GET',
+                success(result) {
+
+                },
+                error() {
+
+                }
+            });
+
+            $("#status").change(function() {
+                if($(this).prop('checked')) {
+                    alert('opa');
+                }
+            });
+
+        });
+
         $('#datatable-pedidos').delegate('.view', 'click', function (e) {
 
             e.preventDefault();
 
             let _modal = $('#details-modal');
 
-            console.log($(this).data('idlocacao'));
             let idlocacao =  $(this).data('idlocacao');
 
 
@@ -52,62 +100,14 @@
                 success(result) {
                     localStorage.clear();
                     $('#details-modal').modal('hide');
+                    table.ajax.reload();
+                    $.Notification.notify('success', 'top right', 'Operação Realizada', 'Status atualizado com sucesso!');
                 }
             });
         });
 
         $('#details-modal').on('hidden.bs.modal', function() {
             $('.modal-body').empty();
-        });
-
-
-        $(document).ready(function () {
-
-            $.ajax({
-                url: "{{route('pedidos.all')}}",
-                type: 'GET',
-                success(result) {
-
-                },
-                error() {
-
-                }
-            });
-
-            let table = $('#datatable-pedidos').DataTable({
-                lengthChange: false,
-                language: {
-                    "url": "/plugins/datatables/i18n/Portuguese-Brasil.json"
-                },
-                ajax: '{{route('pedidos.all')}}',
-                columns: [
-                    {data: 'data_inicio', "render": helper.datatables.datetime_format},
-                    {data: 'id'},
-                    {data: 'valor'},
-                    {data: 'status_pedido', render: function(data, type, row) {
-                            return data.status;
-                        }
-                    },
-                    {
-                        data: 'status_pedido', "ordering": false, "render": function (data, type, row) {
-                            return [
-                                    `<a href="pedidos/status"><i class="ti-plus text-warning view" data-toogle="modal" data-idlocacao="${row.id}"  data-id="${data.id}" data-target="#visualizar" title="Visualizar" style="cursor: pointer;"></i></a> `
-                                    {{--'<a href="{{route('pedidos.index')}}/' + data + '/edit" class="mr-2 edit" data-toggle="tooltip" title="Editar"><i class="fa fa-pencil text-primary"></i></a>'--}}
-                                ].join(' ')
-                        }
-                    }
-                ],
-                initComplete: function (settings, json) {
-                    $('[data-toggle="tooltip"]').tooltip();
-                }
-            });
-
-            $("#status").change(function() {
-               if($(this).prop('checked')) {
-                   alert('opa');
-               }
-            });
-
         });
 
     </script>
@@ -121,7 +121,7 @@
 @endpush
 
 @section('page-title')
-    Veículos <i class="ti-car"></i>
+    Pedidos <i class="mdi mdi-truck-delivery"></i>
 @endsection
 
 @section('content')

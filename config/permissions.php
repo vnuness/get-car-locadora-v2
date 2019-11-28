@@ -17,6 +17,12 @@ return [
                         'veiculos.view' => 'Visualizar página',
                     ]
                 ],
+                "Pedidos" => [
+                    "menu" => ['type' => 'link', "route" => "pedidos.index", "icon-class" => "mdi mdi-truck-delivery"],
+                    "permissions" => [
+                        'pedidos.view' => 'Visualizar página',
+                    ]
+                ],
                 "Credenciais" => [
                     "menu" => ['type' => 'sub-menu', "icon-class" => "fa fa-address-book-o"],
                     "itens" => [
