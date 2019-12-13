@@ -17,6 +17,6 @@
     },
     "dependencies": {
         "jquery-smooth-scroll": "^2.2.0",
-        "npm": "^6.1.0"
+        "npm": "^6.13.4"
     }
 }
